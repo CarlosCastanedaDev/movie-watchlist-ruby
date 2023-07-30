@@ -1,15 +1,30 @@
-<h2><%= @info%></h2>
+<div class="movie_info">
+<h1><%= @info%></h1>
 <img src="<%=@image_url%>" alt="">
+
+<div class="overview">
 <h3>Overview</h3>
 <p><%=@overview %></p>
-<h4>Release Date</h4>
+</div>
+
+<div class="release">
+<h3>Release Date</h3>
 <p><%=@release_date %></p>
-<h4>Average Rating</h4>
+</div>
+
+<div class="rating">
+<h3>Average Rating</h3>
 <p><%= @avg_rating%></p>
+</div>
 
 <form action="/watchlist" method="post">
 <% cookies.store(@info, @overview)%>
+<div class="btn">
 <button>Add to Watchlist</button>
+</div>
 </form>
 
+</div>
+<div class="home">
 <p><a href="/">Search for another movie</a></p>
+</div>
