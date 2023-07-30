@@ -1,4 +1,12 @@
-<h1>Movie List</h1>
-
-<p><%= @info%></p>
+<h2><%= @info%></h2>
 <img src="<%=@image_url%>" alt="">
+<h3>Overview</h3>
+<p><%=@overview %></p>
+<h4>Release Date</h4>
+<p><%=@release_date %></p>
+<h4>Average Rating</h4>
+<p><%= @avg_rating%></p>
+
+<h3>Add to watchlist</h3>
+
+<p><a href="/">Search for another movie</a></p>
