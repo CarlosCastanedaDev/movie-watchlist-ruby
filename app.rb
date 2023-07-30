@@ -3,7 +3,7 @@ require "sinatra/reloader"
 require "http"
 require 'uri'
 require 'net/http'
-
+require "sinatra/cookies"
 
 token = ENV.fetch("BEARER_TOKEN")
 
@@ -43,4 +43,14 @@ poster = @res.dig("results", 0, "poster_path")
 
 @image_url = "https://image.tmdb.org/t/p/w300/#{poster}"
 erb(:list)
+end
+
+post("/watchlist") do
+  erb(:watchlist)
+end
+
+get("my_watchlist") do
+
+  @movies = cookies.keys
+  erb(:my_watchlist)
 end

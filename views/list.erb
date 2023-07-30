@@ -7,6 +7,9 @@
 <h4>Average Rating</h4>
 <p><%= @avg_rating%></p>
 
-<h3>Add to watchlist</h3>
+<form action="/watchlist" method="post">
+<% cookies.store(@info, @overview)%>
+<button>Add to Watchlist</button>
+</form>
 
 <p><a href="/">Search for another movie</a></p>
