@@ -21,7 +21,9 @@ body {
   margin-top: 20px;
 }
 
-
+h1 {
+  max-width: 300px;
+}
 
 img {
   max-width: 380px;
@@ -95,4 +97,17 @@ button {
 
 .title {
   font-weight: 300;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:visited {
+  color: white;
+}
+
+.another_search {
+  font-size: 1.1rem;
+  padding: 10px 20px;
 }

@@ -17,14 +17,8 @@
 <p><%= @avg_rating%></p>
 </div>
 
-<form action="/add_to_watchlist/<%=@id %>/<%=@title %>" method="post">
- <input type="hidden" name="_method" value="post">
-<div class="btn">
-<button>Add to Watchlist</button>
-</div>
-</form>
 
 </div>
 <div class="home">
-<p><a href="/">Search for another movie</a></p>
+<button class="another_search"><a href="/">Search for another movie</a></button>
 </div>
