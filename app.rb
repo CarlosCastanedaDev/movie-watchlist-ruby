@@ -8,7 +8,20 @@ token = ENV.fetch("BEARER_TOKEN")
 
 
 get("/") do
- 
+
+  url = URI("https://api.themoviedb.org/3/trending/movie/week")
+  
+  http = Net::HTTP.new(url.host, url.port)
+  http.use_ssl = true
+  
+  request = Net::HTTP::Get.new(url)
+  request["accept"] = 'application/json'
+  request["Authorization"] = 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzMTAyMTAwZTE0NjEwNWFkY2U5YjE0YWM4MDFkNTQwNyIsInN1YiI6IjYzNzJiZGQyYmYwZjYzMDBkYzhlMTEwYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.2srIeTBaKovQSYKNh8NRtc7ATEGli38880nIb-_RK9U'
+  
+  response = http.request(request)
+  parsed_response = JSON.parse(response.read_body)
+  @trending = parsed_response
+  
   erb(:home)
 end
 
@@ -39,4 +52,8 @@ poster = @res.dig("results", 0, "poster_path")
 @image_url = "https://image.tmdb.org/t/p/w300/#{poster}"
 
 erb(:list)
+end
+
+get("trending_movie") do
+  erb(:list)
 end

@@ -9,4 +9,13 @@
 <input type="text" id="search" name="movie" placeholder="Enter a movie title...">
 <button>Find my movie 🍿</button>
 </form>
+
+<div class="trending">
+<h2>Trending Movies 🎬</h2>
+<% @trending['results'].first(5).each do |movie| %>
+<ul>
+<li><%=movie.dig("original_title")%></li>
+</ul>
+  <% end%>
+</div>
 </div>
