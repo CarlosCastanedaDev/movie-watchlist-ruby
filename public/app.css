@@ -4,9 +4,28 @@ body {
   font-family: "Karla", 'sans-serif';
 }
 
+.hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+  max-width: 400px;
+  margin: 0 auto;
+  height: 70vh;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+
 
 img {
   max-width: 380px;
+  border-radius: 2px;
 }
 .movie_info {
   display: flex;
@@ -42,11 +61,15 @@ img {
 }
 
 button {
-  background-color: blue;
+  background-color: rgb(29, 29, 246);
   color: white;
   padding: 15px;
-  border-radius: 10px;
+  border: none;
+  border-radius: 25px;
   font-family: "Karla", "sans-serif";
+  font-size: 1.5rem;
+  font-weight: 300;
+  margin-top: 30px;
   
 }
 
@@ -54,9 +77,22 @@ button {
   display: flex;
   justify-content: center;
   margin-top: 20px;
+  padding: 0 20px 0;
+
+}
+
+#search {
+  width: 300px;
+  max-width: 400px;
+  padding: 15px;
+  border-radius: 2px;
 }
 
 .home {
   display: flex;
   justify-content: center;
+}
+
+.title {
+  font-weight: 300;
 }

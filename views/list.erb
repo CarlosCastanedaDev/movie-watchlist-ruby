@@ -1,5 +1,5 @@
 <div class="movie_info">
-<h1><%= @info%></h1>
+<h1><%= @title%></h1>
 <img src="<%=@image_url%>" alt="">
 
 <div class="overview">
@@ -17,8 +17,8 @@
 <p><%= @avg_rating%></p>
 </div>
 
-<form action="/watchlist" method="post">
-<% cookies.store(@info, @overview)%>
+<form action="/add_to_watchlist/<%=@id %>/<%=@title %>" method="post">
+ <input type="hidden" name="_method" value="post">
 <div class="btn">
 <button>Add to Watchlist</button>
 </div>
