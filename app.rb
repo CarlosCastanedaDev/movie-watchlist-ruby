@@ -6,6 +6,9 @@ require "sinatra/cookies"
 
 token = ENV.fetch("BEARER_TOKEN")
 
+# Enable sessions and set a secret key for encryption
+enable :sessions
+# set :session_secret, 'your_session_secret_here'
 
 get("/") do
 
@@ -51,6 +54,17 @@ poster = @res.dig("results", 0, "poster_path")
 @id = @res.dig("results", 0, "id")
 @image_url = "https://image.tmdb.org/t/p/w300/#{poster}"
 
+@image_url = "https://image.tmdb.org/t/p/w300/#{poster}"
+
+  # Retrieve the current list of movies from the session, or initialize it to an empty array
+  movies = session[:movies] || []
+
+  # Add the movie title to the list
+  movies << @title
+
+  # Store the updated list of movie titles in the session cookie
+  session[:movies] = movies
+
 erb(:list)
 end
 
@@ -80,6 +94,52 @@ get("/trending_movie/:title") do
  @id = @res.dig("results", 0, "id")
  @image_url = "https://image.tmdb.org/t/p/w300/#{poster}"
  
+ @image_url = "https://image.tmdb.org/t/p/w300/#{poster}"
+
+  # Retrieve the current list of movies from the session, or initialize it to an empty array
+  movies = session[:movies] || []
+
+  # Add the movie title to the list
+  movies << @title
+
+  # Store the updated list of movie titles in the session cookie
+  session[:movies] = movies
  
   erb(:list)
+end
+
+
+# Route to display the watchlist view
+get '/watchlist' do
+  # Retrieve the list of movie titles from the session cookie
+  @watchlist = session[:movies] || []
+
+  # Render the watchlist view
+  erb :watchlist
+end
+
+# Route to handle the form submission for adding a movie to the watchlist
+post '/add_to_watchlist' do
+  puts params.inspect
+  begin
+    movie_title = params[:title]
+
+    # Retrieve the current list of movies from the session, or initialize it to an empty array
+    movies = session[:movies] || []
+
+    # Check if the movie title is not already in the watchlist
+    unless movies.include?(movie_title)
+      # Add the movie title to the list
+      movies << movie_title
+    end
+
+    # Store the updated list of movie titles in the session cookie
+    session[:movies] = movies
+
+    # Render the list view again with the updated watchlist
+  erb :added
+  rescue => e
+    status 500
+    "Error: #{e.message}"
+  end
 end

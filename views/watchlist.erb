@@ -1,0 +1,11 @@
+<!-- Inside your watchlist.erb view -->
+<h1>My Watchlist</h1>
+<ul>
+  <% @watchlist.each do |movie_title| %>
+    <li><%= movie_title %></li>
+  <% end %>
+</ul>
+
+<div class="home">
+  <button class="another_search"><a href="/">Search for another movie</a></button>
+</div>

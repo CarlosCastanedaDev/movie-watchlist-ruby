@@ -1,4 +1,4 @@
-
+<% begin %>
 <div class="hero">
 
 <div class="title">
@@ -18,4 +18,10 @@
 </ul>
   <% end%>
 </div>
+
+<a href="/watchlist">View Watchlist</a>
 </div>
+
+<% rescue => e %>
+  <p>Error: <%= e.message %></p>
+  <% end %>

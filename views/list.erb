@@ -1,24 +1,31 @@
+<!-- Inside your list.erb view -->
 <div class="movie_info">
-<h1><%= @title%></h1>
-<img src="<%=@image_url%>" alt="">
+  <h1><%= @title %></h1>
+  <img src="<%=@image_url%>" alt="">
 
-<div class="overview">
-<h3>Overview</h3>
-<p><%=@overview %></p>
+  <div class="overview">
+    <h3>Overview</h3>
+    <p><%=@overview %></p>
+  </div>
+
+  <div class="release">
+    <h3>Release Date</h3>
+    <p><%=@release_date %></p>
+  </div>
+
+  <div class="rating">
+    <h3>Average Rating</h3>
+    <p><%= @avg_rating%></p>
+  </div>
+
+  <!-- Add the form for adding the movie to the watchlist -->
+  <form action="/add_to_watchlist" method="post">
+    <input type="hidden" name="title" value="<%= @title %>">
+    <button type="submit">Add to Watchlist</button>
+  </form>
 </div>
 
-<div class="release">
-<h3>Release Date</h3>
-<p><%=@release_date %></p>
-</div>
-
-<div class="rating">
-<h3>Average Rating</h3>
-<p><%= @avg_rating%></p>
-</div>
-
-
-</div>
 <div class="home">
-<button class="another_search"><a href="/">Search for another movie</a></button>
+  <button class="another_search"><a href="/">Search for another movie</a></button>
 </div>
+
