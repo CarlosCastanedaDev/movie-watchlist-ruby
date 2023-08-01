@@ -6,13 +6,14 @@ require "sinatra/cookies"
 
 token = ENV.fetch("BEARER_TOKEN")
 
-# Enable sessions and set a secret key for encryption
 enable :sessions
 
+# Homepage route
 get("/") do 
   erb(:home)
 end
 
+# Route to display searched movie
 get("/movie") do
    movie = params.fetch("movie").capitalize
 
@@ -42,7 +43,7 @@ poster = @res.dig("results", 0, "poster_path")
 erb(:list)
 end
 
-
+# Route to display top 5 trending movies, changes weekly
 get("/trending") do
   url = URI("https://api.themoviedb.org/3/trending/movie/week")
   
@@ -51,7 +52,7 @@ get("/trending") do
   
   request = Net::HTTP::Get.new(url)
   request["accept"] = 'application/json'
-  request["Authorization"] = 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzMTAyMTAwZTE0NjEwNWFkY2U5YjE0YWM4MDFkNTQwNyIsInN1YiI6IjYzNzJiZGQyYmYwZjYzMDBkYzhlMTEwYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.2srIeTBaKovQSYKNh8NRtc7ATEGli38880nIb-_RK9U'
+  request["Authorization"] = "Bearer #{token}"
   
   response = http.request(request)
   parsed_response = JSON.parse(response.read_body)
@@ -61,22 +62,20 @@ get("/trending") do
   @trending['results'].first(5).each do |movie|
     @trending_movies << movie.dig("original_title")
   end
+
   erb(:trending)
 end
 
 # Route to display the watchlist view
-get '/watchlist' do
+get('/watchlist') do
   # Retrieve the list of movie titles from the session cookie
   @watchlist = session[:movies] || []
 
-  # Render the watchlist view
-  erb :watchlist
+  erb(:watchlist)
 end
 
 # Route to handle the form submission for adding a movie to the watchlist
-post '/add_to_watchlist' do
-  puts params.inspect
-  begin
+post('/add_to_watchlist') do
     movie_title = params[:title]
 
     # Retrieve the current list of movies from the session, or initialize it to an empty array
@@ -91,10 +90,5 @@ post '/add_to_watchlist' do
     # Store the updated list of movie titles in the session cookie
     session[:movies] = movies
 
-    # Render the list view again with the updated watchlist
-  erb :added
-  rescue => e
-    status 500
-    "Error: #{e.message}"
-  end
+  erb(:added)
 end
