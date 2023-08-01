@@ -8,28 +8,13 @@ token = ENV.fetch("BEARER_TOKEN")
 
 # Enable sessions and set a secret key for encryption
 enable :sessions
-# set :session_secret, 'your_session_secret_here'
 
-get("/") do
-
-  url = URI("https://api.themoviedb.org/3/trending/movie/week")
-  
-  http = Net::HTTP.new(url.host, url.port)
-  http.use_ssl = true
-  
-  request = Net::HTTP::Get.new(url)
-  request["accept"] = 'application/json'
-  request["Authorization"] = 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzMTAyMTAwZTE0NjEwNWFkY2U5YjE0YWM4MDFkNTQwNyIsInN1YiI6IjYzNzJiZGQyYmYwZjYzMDBkYzhlMTEwYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.2srIeTBaKovQSYKNh8NRtc7ATEGli38880nIb-_RK9U'
-  
-  response = http.request(request)
-  parsed_response = JSON.parse(response.read_body)
-  @trending = parsed_response
-  
+get("/") do 
   erb(:home)
 end
 
 get("/movie") do
-   movie = params.fetch("movie")
+   movie = params.fetch("movie").capitalize
 
 # Taken from TMDB Api Docs
 url = URI("https://api.themoviedb.org/3/search/movie?query=#{movie}")
@@ -54,60 +39,30 @@ poster = @res.dig("results", 0, "poster_path")
 @id = @res.dig("results", 0, "id")
 @image_url = "https://image.tmdb.org/t/p/w300/#{poster}"
 
-@image_url = "https://image.tmdb.org/t/p/w300/#{poster}"
-
-  # Retrieve the current list of movies from the session, or initialize it to an empty array
-  movies = session[:movies] || []
-
-  # Add the movie title to the list
-  movies << @title
-
-  # Store the updated list of movie titles in the session cookie
-  session[:movies] = movies
-
 erb(:list)
 end
 
-get("/trending_movie/:title") do
-    movie = params.fetch(:title)
- 
- # Taken from TMDB Api Docs
- url = URI("https://api.themoviedb.org/3/search/movie?query=#{movie}")
- 
- http = Net::HTTP.new(url.host, url.port)
- http.use_ssl = true
- 
- request = Net::HTTP::Get.new(url)
- request["accept"] = 'application/json'
- request["Authorization"] = "Bearer #{token}"
- 
- response = http.request(request)
- parsed_response = JSON.parse(response.read_body)
- 
- 
- @res = parsed_response
- @title = @res.dig("results" ,0, "original_title")
- poster = @res.dig("results", 0, "poster_path")
- @overview = @res.dig("results" ,0, "overview")
- @release_date = @res.dig("results" ,0, "release_date")
- @avg_rating = @res.dig("results" ,0, "vote_average")
- @id = @res.dig("results", 0, "id")
- @image_url = "https://image.tmdb.org/t/p/w300/#{poster}"
- 
- @image_url = "https://image.tmdb.org/t/p/w300/#{poster}"
 
-  # Retrieve the current list of movies from the session, or initialize it to an empty array
-  movies = session[:movies] || []
+get("/trending") do
+  url = URI("https://api.themoviedb.org/3/trending/movie/week")
+  
+  http = Net::HTTP.new(url.host, url.port)
+  http.use_ssl = true
+  
+  request = Net::HTTP::Get.new(url)
+  request["accept"] = 'application/json'
+  request["Authorization"] = 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzMTAyMTAwZTE0NjEwNWFkY2U5YjE0YWM4MDFkNTQwNyIsInN1YiI6IjYzNzJiZGQyYmYwZjYzMDBkYzhlMTEwYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.2srIeTBaKovQSYKNh8NRtc7ATEGli38880nIb-_RK9U'
+  
+  response = http.request(request)
+  parsed_response = JSON.parse(response.read_body)
+  @trending = parsed_response
 
-  # Add the movie title to the list
-  movies << @title
-
-  # Store the updated list of movie titles in the session cookie
-  session[:movies] = movies
- 
-  erb(:list)
+  @trending_movies = []
+  @trending['results'].first(5).each do |movie|
+    @trending_movies << movie.dig("original_title")
+  end
+  erb(:trending)
 end
-
 
 # Route to display the watchlist view
 get '/watchlist' do

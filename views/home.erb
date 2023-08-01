@@ -2,7 +2,7 @@
 <div class="hero">
 
 <div class="title">
-  <h1>Search for a Movie!</h1>
+  <h1>Search for a movie!</h1>
 </div>
 <form action="/movie" class="form">
 <label for="search"></label>
@@ -10,16 +10,6 @@
 <button>Find my movie 🍿</button>
 </form>
 
-<div class="trending">
-<h2>Trending Movies 🎬</h2>
-<% @trending['results'].first(5).each do |movie| %>
-<ul>
-<li><a href="/trending_movie/<%=movie.dig("original_title")%>"><%=movie.dig("original_title")%></a></li>
-</ul>
-  <% end%>
-</div>
-
-<a href="/watchlist">View Watchlist</a>
 </div>
 
 <% rescue => e %>

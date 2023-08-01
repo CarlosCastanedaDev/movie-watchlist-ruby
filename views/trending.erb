@@ -1,0 +1,14 @@
+<div class="trending">
+<h2>Trending Movies 🎬</h2>
+<ul>
+<% @trending_movies.each do |movie| %>
+<li><%=movie%></li>
+
+<form action="/movie">
+    <input type="hidden" name="movie" value='<%= movie.capitalize %>'>
+
+    <button>Movie Info</button>
+    </form>
+  <% end%>
+  </ul>
+</div>

@@ -1,11 +1,13 @@
-<!-- Inside your watchlist.erb view -->
+<div class="watchlist_container">
 <h1>My Watchlist</h1>
-<ul>
+  <div class="watchlist_list">
   <% @watchlist.each do |movie_title| %>
-    <li><%= movie_title %></li>
-  <% end %>
-</ul>
+    <h2 class="watchlist_title"><%= movie_title %></h2>
+    <form action="/movie">
+    <input type="hidden" name="movie" value='<%= movie_title %>''>
 
-<div class="home">
-  <button class="another_search"><a href="/">Search for another movie</a></button>
-</div>
+    <button class="btn_movie_info">Movie Info</button>
+    </form>
+  <% end %>
+  </div>
+  </div>

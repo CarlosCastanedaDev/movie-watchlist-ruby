@@ -2,6 +2,26 @@ body {
   background-color: #121212;
   color: white;
   font-family: "Karla", 'sans-serif';
+ 
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 400px;
+}
+
+header li {
+  list-style: none;
+  display: inline-block;
+  padding: 0 20px;
+}
+
+header a {
+  text-decoration: none;
+  color: #555;
+  transition: all 0.3s ease 0s;
 }
 
 .hero {
@@ -130,6 +150,36 @@ ul {
   display: inline-block;
   text-align: left;
 }
+
+.watchlist_container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 h2{
   text-align: center;
+}
+
+.watchlist_list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 300px;
+  max-width: 400px;
+
+}
+
+.watchlist_title {
+  text-align: left;
+  padding-left: 5px;
+}
+
+.btn_movie_info {
+  text-align: center;
+  padding: 5px 20px;
+  background-color: rgb(29, 29, 246);
+  border: none;
+  margin-bottom: 20px;
+  margin-top: -10px;
 }
