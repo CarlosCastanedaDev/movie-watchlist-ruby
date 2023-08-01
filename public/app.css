@@ -11,14 +11,14 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 360px;
+  max-width: 340px;
   margin: 0 auto;
 }
 
 header li {
   list-style: none;
   display: inline-block;
-  padding: 0 5px;
+  padding: 0 8px;
 }
 .nav_title {
   padding-left: 5px;
@@ -123,6 +123,7 @@ button {
 
 .title {
   font-weight: 300;
+  margin-top: 40px;
 }
 
 a {
