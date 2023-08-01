@@ -7,11 +7,14 @@
 <form action="/movie" class="form">
 <label for="search"></label>
 <input type="text" id="search" name="movie" placeholder="Enter a movie title...">
-<button>Find my movie 🍿</button>
+<button class="home_btn">Find my movie 🎥</button>
 </form>
 
 </div>
 
+<footer>
+      <p>Created by <a href="https://www.github.com/CarlosCastanedaDev" target="_blank" class="my_name">Carlos Castaneda</a></p>
+    </footer>
 <% rescue => e %>
   <p>Error: <%= e.message %></p>
   <% end %>

@@ -1,14 +1,15 @@
 <div class="trending">
 <h2>Trending Movies 🎬</h2>
-<ul>
+
 <% @trending_movies.each do |movie| %>
-<li><%=movie%></li>
+<h2 class="trending_title"><%=movie%></h2>
 
 <form action="/movie">
     <input type="hidden" name="movie" value='<%= movie.capitalize %>'>
 
-    <button>Movie Info</button>
+    <button class="btn_trending_info">Movie Info</button>
     </form>
+    <hr class="trending_break">
   <% end%>
-  </ul>
+  
 </div>

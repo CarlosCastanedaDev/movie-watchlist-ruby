@@ -2,6 +2,8 @@ body {
   background-color: #121212;
   color: white;
   font-family: "Karla", 'sans-serif';
+  position: relative;
+  min-height: 100vh; 
  
 }
 
@@ -10,14 +12,17 @@ header {
   justify-content: space-between;
   align-items: center;
   max-width: 400px;
+  margin: 0 auto;
 }
 
 header li {
   list-style: none;
   display: inline-block;
-  padding: 0 20px;
+  padding: 0 10px;
 }
-
+.nav_title {
+  padding-left: 5px;
+}
 header a {
   text-decoration: none;
   color: #555;
@@ -113,6 +118,7 @@ button {
 }
 
 a {
+  color: white;
   text-decoration: none;
 
 }
@@ -120,7 +126,10 @@ a {
 a:visited {
   color: white;
 }
-
+.my_name:hover {
+  color:rgb(29, 29, 246);
+  transition: color 0.3s ease-out;
+}
 .another_search {
   font-size: 1.1rem;
   padding: 10px 20px;
@@ -131,19 +140,45 @@ a:visited {
        font-size: 16px !important;
   }
 }
+.added_title {
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 50px;
+}
 
 .trending {
   display: flex;
   text-align: center;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+  margin: 0 auto;
   border: 2px solid rgb(29, 29, 246);
   margin-top: 30px;
   border-radius: 8px;
-  width: 300px;
-  padding: 10px 0;
+  width: 320px;
+  padding: 10px 0 20px;
 }
 
+.trending_title {
+  text-align: center;
+  padding-left: 5px;
+  max-width: 360px;
+}
+
+.btn_trending_info {
+  text-align: center;
+  padding: 5px 20px;
+  background-color: rgb(29, 29, 246);
+  border: none;
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  margin-top: -10px;
+}
+
+.trending_break {
+  width: 260px;
+}
 
 ul {
   list-style: none;
@@ -155,6 +190,32 @@ ul {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+  margin: 0 auto ;
+  border: 2px solid rgb(29, 29, 246);
+  margin-top: 30px;
+  border-radius: 8px;
+  width: 320px;
+  padding: 10px 0 20px;
+}
+
+.add_btn {
+  text-align: center;
+  padding: 5px 20px;
+  background-color: rgb(29, 29, 246);
+  border: none;
+  font-size: 1.2rem;
+  margin: 20px 0 30px;
+  
+}
+
+.home_btn {
+  text-align: center;
+  padding: 8px 20px;
+  background-color: rgb(29, 29, 246);
+  border: none;
+  font-size: 1.3rem;
+  margin-top: 40px;
 }
 
 h2{
@@ -165,14 +226,15 @@ h2{
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   width: 300px;
   max-width: 400px;
 
 }
 
 .watchlist_title {
-  text-align: left;
-  padding-left: 5px;
+  text-align: center;
+  padding:  0 5px;
 }
 
 .btn_movie_info {
@@ -180,6 +242,17 @@ h2{
   padding: 5px 20px;
   background-color: rgb(29, 29, 246);
   border: none;
+  font-size: 1.2rem;
   margin-bottom: 20px;
   margin-top: -10px;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 30px;
+  width: 100%;
+  height: 2.5rem;
 }
