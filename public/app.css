@@ -11,17 +11,18 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 370px;
+  max-width: 360px;
   margin: 0 auto;
 }
 
 header li {
   list-style: none;
   display: inline-block;
-  padding: 0 10px;
+  padding: 0 5px;
 }
 .nav_title {
   padding-left: 5px;
+  font-size: 1.5rem;
 }
 header a {
   text-decoration: none;
@@ -48,6 +49,9 @@ header a {
 
 h1 {
   max-width: 300px;
+}
+.hero_h1 {
+  font-size: 1.7rem;
 }
 
 h3 {
