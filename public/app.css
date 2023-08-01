@@ -11,7 +11,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 400px;
+  max-width: 370px;
   margin: 0 auto;
 }
 
@@ -48,6 +48,10 @@ header a {
 
 h1 {
   max-width: 300px;
+}
+
+h3 {
+  margin-bottom: -10px;
 }
 
 img {
