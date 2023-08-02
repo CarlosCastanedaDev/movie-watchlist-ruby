@@ -92,8 +92,10 @@ get("/trending") do
   @trending = parsed_response
 
   @trending_movies = []
+  @trending_posters = []
   @trending['results'].first(5).each do |movie|
     @trending_movies << movie.dig("original_title")
+    @trending_posters << movie.dig( "poster_path")
   end
 
   erb(:trending)
