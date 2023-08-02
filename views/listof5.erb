@@ -1,0 +1,13 @@
+<div class="trending">
+  <% @trending_movies.each_with_index do |movie, index| %>
+    <h2 class="trending_title"><%= movie %></h2>
+    <img src="https://image.tmdb.org/t/p/w200<%= @trending_posters[index] %>" alt="">
+  
+    <form action="/movie">
+      <input type="hidden" name="movie" value='<%= movie.capitalize %>'>
+      <button class="btn_trending_list_info">Movie Info</button>
+    </form>
+  
+    <hr class="trending_break">
+  <% end %>
+</div>

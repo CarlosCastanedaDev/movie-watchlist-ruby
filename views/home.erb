@@ -1,15 +1,32 @@
 <div class="hero">
-
+<!--
 <div class="title">
   <h1 class="hero_h1">Search for a movie!</h1>
 </div>
 <form action="/movie" class="form">
 <label for="search"></label>
 <input type="text" id="search" name="movie" placeholder="Enter a movie title...">
+<button class="home_btn">I'm Feeling Lucky!</button>
+</form>
+<form action="/pick_a_movie" class="form">
+<label for="search"></label>
+<input type="text" id="search" name="movie" placeholder="Enter a movie title...">
 <button class="home_btn">Find my movie 🎥</button>
 </form>
+-->
 
+<div class="title">
+  <h1 class="hero_h1">Search for a movie!</h1>
 </div>
+<form action="/pick_a_movie" class="form">
+  <label for="search"></label>
+  <input type="text" id="search" name="movie" placeholder="Enter a movie title...">
+  <div class="two-buttons">
+  <button class="home_btn">Find my movie 🎥</button>
+  <button class="lucky_btn" formaction="/movie">I'm Feeling Lucky!</button>
+ </div>
+</form>
+
 
 <footer>
   <p>Created by <a href="https://www.github.com/CarlosCastanedaDev" target="_blank" class="my_name">Carlos Castaneda</a></p>

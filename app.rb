@@ -43,6 +43,39 @@ poster = @res.dig("results", 0, "poster_path")
 erb(:list)
 end
 
+get("/pick_a_movie") do
+  movie = params.fetch("movie").capitalize
+  # Taken from TMDB Api Docs
+url = URI("https://api.themoviedb.org/3/search/movie?query=#{movie}")
+
+http = Net::HTTP.new(url.host, url.port)
+http.use_ssl = true
+
+request = Net::HTTP::Get.new(url)
+request["accept"] = 'application/json'
+request["Authorization"] = "Bearer #{token}"
+
+response = http.request(request)
+parsed_response = JSON.parse(response.read_body)
+@trending = parsed_response
+
+@trending_movies = []
+@trending_posters = []
+
+@trending['results'].first(5).each do |movie|
+  @trending_movies << movie.dig("original_title")
+  @trending_posters << movie.dig( "poster_path")
+
+  # @trending_date << movie.dig("release_date")
+end
+# @res = parsed_response
+# @title = @res.dig("results" ,0, "original_title")
+# poster = @res.dig("results", 0, "poster_path")
+# @release_date = @res.dig("results" ,0, "release_date")
+# @image_url = "https://image.tmdb.org/t/p/w100/#{poster}"
+  erb(:listof5)
+end
+
 # Route to display top 5 trending movies, changes weekly
 get("/trending") do
   url = URI("https://api.themoviedb.org/3/trending/movie/week")
