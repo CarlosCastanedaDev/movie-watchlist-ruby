@@ -4,9 +4,7 @@ require 'uri'
 require 'net/http'
 require 'sinatra/cookies'
 
-token = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzMTAyMTAwZTE0NjEwNWFkY2U5YjE0YWM4MDFkNTQwNyIsInN1YiI6IjYzNzJiZGQyYmYwZjYzMDBkYzhlMTEwYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.2srIeTBaKovQSYKNh8NRtc7ATEGli38880nIb-_RK9U'
-
-# ENV.fetch("BEARER_TOKEN")
+token = ENV.fetch("BEARER_TOKEN")
 
 
 enable :sessions
