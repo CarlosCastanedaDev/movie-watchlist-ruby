@@ -2,6 +2,10 @@
   <h1><%= @title %></h1>
   <img src="<%=@image_url%>" alt="">
 
+  <div class="tagline">
+    <p>"<%= @tagline %>"</p>
+  </div>
+
   <div class="overview">
     <h3>Overview</h3>
     <p><%=@overview %></p>
@@ -9,12 +13,18 @@
 
   <div class="release">
     <h3>Release Date</h3>
-    <p><%=@release_date %></p>
+    <p><%=@formatted_date %></p>
+  </div>
+
+
+<div class="rating">
+    <h3>Runtime</h3>
+    <p><%= @runtime%> minutes</p>
   </div>
 
   <div class="rating">
     <h3>Average Rating</h3>
-    <p><%= @avg_rating%></p>
+    <p><%= @avg_rating.round(2)%></p>
   </div>
 
   <!-- Add the form for adding the movie to the watchlist -->

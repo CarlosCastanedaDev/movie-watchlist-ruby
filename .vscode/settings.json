@@ -59,7 +59,7 @@
     "erb": "html"
   },
   "[ruby]": {
-    "editor.defaultFormatter": "mbessey.vscode-rufo",
+    "editor.defaultFormatter": "misogi.ruby-rubocop",
     "editor.formatOnSave": false
   },
   "[erb]": {

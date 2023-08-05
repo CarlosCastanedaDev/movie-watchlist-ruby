@@ -1,14 +1,14 @@
 <div class="watchlist_container">
-<h2>My Watchlist 📋</h2>
+  <h2>My Watchlist 📋</h2>
   <div class="watchlist_list">
-  <% @watchlist.each do |movie_title| %>
-    <h2 class="watchlist_title"><%= movie_title %></h2>
-    <form action="/movie">
-    <input type="hidden" name="movie" value='<%= movie_title %>''>
-
-    <button class="btn_movie_info">Movie Info</button>
-    </form>
-    <hr class="trending_break">
-  <% end %>
+    <% @watchlist.each do |movie| %>
+      <h2 class="watchlist_title"><%= movie[:title] %></h2>
+      <img src="<%= movie[:image_url] %>" alt="Movie Poster">
+      <form action="/movie">
+        <input type="hidden" name="movie" value='<%= movie[:title] %>'>
+        <button class="btn_trending_info">Movie Info</button>
+      </form>
+      <hr class="trending_break">
+    <% end %>
   </div>
-  </div>
+</div>

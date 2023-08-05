@@ -1,21 +1,3 @@
-<!--
-<div class="trending">
-<h2>Trending Movies 🎬</h2>
-
-<% @trending_movies.each do |movie| %>
-<h2 class="trending_title"><%=movie%></h2>
-
-<form action="/movie">
-    <input type="hidden" name="movie" value='<%= movie.capitalize %>'>
-
-    <button class="btn_trending_info">Movie Info</button>
-    </form>
-    <hr class="trending_break">
-  <% end%>
-  
-</div>
--->
-
 <div class="trending">
 <h2>Trending Movies 🎬</h2>
   <% @trending_movies.each_with_index do |movie, index| %>

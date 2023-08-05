@@ -3,8 +3,9 @@
     <h2 class="trending_title"><%= movie %></h2>
     <img src="https://image.tmdb.org/t/p/w200<%= @trending_posters[index] %>" alt="">
   
-    <form action="/movie">
+    <form action="/movie_details">
       <input type="hidden" name="movie" value='<%= movie.capitalize %>'>
+      <input type="hidden" name="movie_id" value='<%= @trending_id[index] %>'>
       <button class="btn_trending_list_info">Movie Info</button>
     </form>
   
