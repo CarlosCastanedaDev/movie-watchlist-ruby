@@ -70,6 +70,7 @@ split_date = @release_date.split("-")
 @runtime = @res['runtime']
 @tagline = @res['tagline']
 @image_url = "https://image.tmdb.org/t/p/w300/#{poster}"
+@image_url_sm = "https://image.tmdb.org/t/p/w200/#{poster}"
 
  erb(:list_details)
 end
