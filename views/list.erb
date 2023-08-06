@@ -14,13 +14,14 @@
 
   <div class="rating">
     <h3>Average Rating</h3>
-    <p><%= @avg_rating%></p>
+    <p><%= @avg_rating.round(2)%></p>
   </div>
 
   <!-- Add the form for adding the movie to the watchlist -->
   <form action="/add_to_watchlist" method="post">
     <input type="hidden" name="title" value="<%= @title %>">
     <input type="hidden" name="image_url" value="<%= @image_url_sm %>">
+    <input type="hidden" name="movie_id" value="<%= @id %>">
     <button type="submit" class="add_btn">Add to Watchlist</button>
   </form>
 </div>

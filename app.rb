@@ -4,8 +4,7 @@ require 'uri'
 require 'net/http'
 require 'sinatra/cookies'
 
-token = ENV.fetch("BEARER_TOKEN")
-
+token = ENV.fetch('BEARER_TOKEN')
 
 enable :sessions
 
@@ -45,34 +44,35 @@ get('/movie') do
 end
 
 get('/movie_details') do
-movie_id = params.fetch('movie_id')
+  movie_id = params.fetch('movie_id')
 
-url = URI("https://api.themoviedb.org/3/movie/#{movie_id}?language=en-US")
+  url = URI("https://api.themoviedb.org/3/movie/#{movie_id}?language=en-US")
 
-http = Net::HTTP.new(url.host, url.port)
-http.use_ssl = true
+  http = Net::HTTP.new(url.host, url.port)
+  http.use_ssl = true
 
-request = Net::HTTP::Get.new(url)
-request["accept"] = 'application/json'
-request["Authorization"] = "Bearer #{token}"
+  request = Net::HTTP::Get.new(url)
+  request['accept'] = 'application/json'
+  request['Authorization'] = "Bearer #{token}"
 
-response = http.request(request)
-parsed_response = JSON.parse(response.read_body)
+  response = http.request(request)
+  parsed_response = JSON.parse(response.read_body)
 
-@res = parsed_response
-@title = @res.dig('original_title')
-poster = @res.dig('poster_path')
-@overview = @res.dig('overview')
-@release_date = @res.dig('release_date')
-split_date = @release_date.split("-")
-@formatted_date = [split_date[1], split_date[2], split_date[0]].join("-")
-@avg_rating = @res.dig('vote_average')
-@runtime = @res['runtime']
-@tagline = @res['tagline']
-@image_url = "https://image.tmdb.org/t/p/w300/#{poster}"
-@image_url_sm = "https://image.tmdb.org/t/p/w200/#{poster}"
+  @res = parsed_response
+  @title = @res['original_title']
+  poster = @res['poster_path']
+  @overview = @res['overview']
+  @release_date = @res['release_date']
+  split_date = @release_date.split('-')
+  @formatted_date = [split_date[1], split_date[2], split_date[0]].join('-')
+  @avg_rating = @res['vote_average']
+  @runtime = @res['runtime']
+  @tagline = @res['tagline']
+  @id = @res['id']
+  @image_url = "https://image.tmdb.org/t/p/w300/#{poster}"
+  @image_url_sm = "https://image.tmdb.org/t/p/w200/#{poster}"
 
- erb(:list_details)
+  erb(:list_details)
 end
 
 get('/pick_a_movie') do
@@ -96,9 +96,9 @@ get('/pick_a_movie') do
   @trending_id = []
 
   @trending['results'].first(5).each do |movie|
-    @trending_movies << movie.dig('original_title')
-    @trending_posters << movie.dig('poster_path')
-    @trending_id << movie.dig('id')
+    @trending_movies << movie['original_title']
+    @trending_posters << movie['poster_path']
+    @trending_id << movie['id']
   end
   
   erb(:listof5)
@@ -121,9 +121,11 @@ get('/trending') do
 
   @trending_movies = []
   @trending_posters = []
+  @trending_id = []
   @trending['results'].first(5).each do |movie|
-    @trending_movies << movie.dig('original_title')
-    @trending_posters << movie.dig('poster_path')
+    @trending_movies << movie['original_title']
+    @trending_posters << movie['poster_path']
+    @trending_id << movie['id']
   end
 
   erb(:trending)
@@ -148,7 +150,7 @@ post('/add_to_watchlist') do
   # Check if the movie title is not already in the watchlist
   unless movies.include?(movie_title)
     # Add the movie title to the list
-    movies << { title: movie_title, image_url: image_url }
+    movies << { title: movie_title, image_url: image_url}
   end
 
   # Store the updated list of movie titles in the session cookie
